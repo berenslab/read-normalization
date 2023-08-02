@@ -1,0 +1,18 @@
+#ignore those files
+ad_readcounts_umicounts_hd1_CELseq2A 
+ad_readcounts_umicounts_hd1_CELseq2B
+ad_readcounts_umicounts_hd1_DropSeqA              
+ad_readcounts_umicounts_hd1_DropSeqB              
+ad_readcounts_umicounts_hd1_MARSseqA              
+ad_readcounts_umicounts_hd1_MARSseqB              
+ad_readcounts_umicounts_hd1_SCRBseqA              
+ad_readcounts_umicounts_hd1_SCRBseqB
+ad_readcounts_umicounts_hd1_Smartseq3xpressA            
+ad_readcounts_umicounts_hd1_Smartseq3_Fibroblast
+ad_readcounts_umicounts_hd1_Smartseq3_Fibroblast_PE
+Ziegenhain2017.hd1.txt.gz
+Johnsson2022_Smartseq3_PE.hd1.txt.gz
+Hagemann-Jensen2022_Smartseq3xpress.hd1.txt.gz
+Hagemann-Jensen2020_Smartseq3_SE.hd1.txt.gz
+mygene_annotations.pickle
+reads_per_umi_dfs_hd1_preproc.pickle
