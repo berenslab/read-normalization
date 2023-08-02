@@ -20,7 +20,7 @@ All plots based on the reads-per-UMI tables requires `05_prepare_umi_datasets` t
 
 # Datasets
 
-- Download the reads-per-UMI tables from [zenodo](https://zenodo.org/record/8172702) and save them to `.data/reads_per_umi_tables/`. 
+- Download the reads-per-UMI tables from [zenodo](https://zenodo.org/record/8172702) and save them to `.data/reads_per_umi_tables/`. R code to obtain the same tables from the public raw data is available in `data/reads_per_umi_tables/prepare_data.R`.
 - Download the Tasic raw count data from [brain-map.org](https://portal.brain-map.org/atlases-and-data/rnaseq/mouse-v1-and-alm-smart-seq) via the `Gene-level (exonic and intronic) read count values for all samples (zip)` link. From these `*.zip` files, extract the `mouse_ALM_2018-06-14_exon-matrix.csv` and `mouse_VISp_2018-06-14_exon-matrix.csv` to `.data/tasic/`.
 - All required metadata tables are contained in this repository for convenience.
 
