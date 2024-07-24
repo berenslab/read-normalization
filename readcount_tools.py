@@ -5,6 +5,13 @@ from scipy.stats import gaussian_kde
 import pandas as pd
 import anndata
 from scipy import sparse
+import scanpy as sc
+from sklearn.decomposition import PCA
+from openTSNE.initialization import rescale as rescale_pca
+import openTSNE
+
+
+
 
 SMALL_SIZE = 7
 MEDIUM_SIZE = 7
@@ -315,4 +322,75 @@ def simulate_amplification(molecules,
     return readcounts, dict(mean=mean,median=median,var=var,ff=ff,alpha=empirical_alpha,max=maxx)
 
 
+def scanpy_preproc_baseline(adata,n_hvgs,n_comps):
+    
+    adata_seurat = adata.copy()
+    sc.pp.normalize_total(adata_seurat)
+    sc.pp.log1p(adata_seurat)
+    hvg_seurat = sc.pp.highly_variable_genes(adata_seurat,flavor='seurat',n_top_genes=n_hvgs,inplace=False)
+
+    adata.var[f'top{n_hvgs}_seurat'] = np.array(hvg_seurat['highly_variable'])
+    ad_hvg_seurat = adata[:,adata.var[f'top{n_hvgs}_seurat']].copy()
+    ad_hvg_seurat.uns['hvg'] = 'Seurat'
+    ad_hvg_seurat.uns['hvg_plotlabel'] = 'Seurat'
+    ad_hvg_seurat.uns['hvg_criterion'] = hvg_seurat['dispersions_norm']
+
+    def logmedian_PCA(ad,n_comps):
+        ad.layers['logmedian'] =  sc.pp.normalize_total(ad,inplace=False)['X']
+        sc.pp.log1p(ad,layer='logmedian')
+
+        pca = PCA(random_state=42)
+        ad.obsm['pca'] = rescale_pca(pca.fit_transform(ad.layers['logmedian'].A))
+        ad.obsm[f'pca{n_comps}'] = ad.obsm['pca'][:,:n_comps]
+
+    logmedian_PCA(ad_hvg_seurat,n_comps=n_comps)
+
+    pca_data_after_HVG = ad_hvg_seurat.obsm[f'pca{n_comps}']
+    tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
+    pca_init = ad_hvg_seurat.obsm['pca'][:,:2]
+    ad_hvg_seurat.obsm['tsne'] = np.array(tsne.fit(X=pca_data_after_HVG,initialization=pca_init))
+    
+    return ad_hvg_seurat
+
+def compute_residuals(adata,alpha,theta,clipping=True,tag_suffix=''):
+    infostr = get_tag(alpha,theta,clipping) + tag_suffix
+    print(infostr)
+    adata.layers[infostr] = pearson_residuals_compound(counts=adata.X.toarray(),theta=theta,alpha=alpha,clipping=clipping)
+    adata.var[infostr+'_var'] = np.var(adata.layers[infostr],axis=0)
+    
+def select_hvgs(adata,alpha,theta,n_hvgs=3000,clipping=True):    
+    resvar = adata.var[get_tag(alpha=alpha,theta=theta,clipping=clipping)+'_var']    
+    hvg_idx = resvar >= np.sort(resvar)[-n_hvgs]
+    adata.var[f'top{n_hvgs}_{get_tag(alpha=alpha,theta=theta,clipping=clipping)}'] = hvg_idx
+    
+def compute_pca_on_hvgs(adata, alpha, theta, n_hvgs,n_comps,clipping=True):
+    tag = get_tag(alpha=alpha, theta=theta,clipping=clipping)
+    #subset to HVGs
+    ad = adata[:,adata.var[f'top{n_hvgs}_{tag}']].copy()
+    #recompute residuals
+    compute_residuals(ad,theta=theta,alpha=alpha,tag_suffix='_afterHVG',clipping=clipping)
+    #compute PCA
+    pca = PCA(random_state=42,n_components=n_comps)
+    ad.obsm[f'pca{n_comps}'] = pca.fit_transform(ad.layers[tag+'_afterHVG'])
+    
+    return ad
+
+
+def readcount_pipeline(adata,alpha, theta, n_hvgs,n_comps,clipping=True):
+    sc.pp.filter_genes(adata,min_cells=5)
+
+    compute_residuals(adata,alpha=alpha,theta=theta,clipping=clipping)
+    select_hvgs(adata,alpha=alpha,theta=theta,n_hvgs=n_hvgs,clipping=clipping)    
+    
+    adata.uns['cpr_alpha']=alpha
+    adata.uns['cpr_theta']=theta
+    adata.var['means'] = np.mean(adata.X.A,axis=0)
+    adata_hvg=compute_pca_on_hvgs(adata,alpha=alpha,theta=theta,n_hvgs=n_hvgs,n_comps=n_comps,clipping=clipping)
+    
+    tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
+    tsne_output = np.array(tsne.fit(X=adata_hvg.obsm[f'pca{n_comps}']))
+    adata_hvg.obsm['tsne'] = tsne_output
+    adata.obsm[f'tsne_{get_tag(alpha=alpha,theta=theta)}'] = tsne_output
+    
+    return adata_hvg
 

@@ -1,0 +1,16 @@
+## this environment might require cmake to be installed!
+## e.g. sudo apt-get install cmake 
+name: r41_env
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - r-base=4.1  ## always specify the R version (faster solve; more stable)
+  - r-essentials
+  - r-remotes # to install qUMI package from github source
+  - bioconductor-monocle #compute census counts
+  - bioconductor-singlecellexperiment
+  - bioconductor-edaseq
+  - bioconductor-scrnaseq
+  - bioconductor-scran # convert sce data to monocle cds data

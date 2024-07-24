@@ -7,4 +7,11 @@ adata_single_cluster.h5ad
 ad_hvg_seurat.h5ad         
 ads_hvg.pickle             
 cluster_df.pickle          
+adata_qumi_census.h5ad
+adata_tpm.h5ad
+census_transposed.mtx
+qumi_transposed.mtx
+tasic_tpm_cells.csv
+tasic_tpm_genes.csv
+tasic_tpm_transposed.mtx
 

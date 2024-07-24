@@ -6,3 +6,7 @@ ZINBfit_single_cluster_meanCutoff_5.h5ad
 zeta_params_list.pickle 
 zeta_params_info_list.pickle   
 gridsearch_broken_zeta                                     
+adata_sim_only_marker_genes_DE_thetaUMI_100_GeomZ.h5ad
+adata_sim_only_marker_genes_DE_thetaUMI_100_GeomZ_processed.h5ad
+adata_sim_thetaUMI_100_GeomZ.h5ad
+adata_sim_thetaUMI_100_GeomZ_processed.h5ad
