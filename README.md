@@ -1,6 +1,6 @@
 # Compound models and Pearson residuals for single-cell RNA-seq data without UMIs
 
-This repository holds the code needed to reproduce the analyses and figures presented in [Lause et al. (2023).](https://www.biorxiv.org/content/10.1101/2023.08.02.551637v1) (release v1) and the updated code after the first round of revisions (release v2).
+This repository holds the code needed to reproduce the analyses and figures presented in [Lause et al. (2024).](https://www.biorxiv.org/content/10.1101/2023.08.02.551637v2). The code for the earlier version of the preprint from August 2023 can be found under the [v1 release](https://github.com/berenslab/read-normalization/releases/tag/v1.0).
 
 # Code
 
