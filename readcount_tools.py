@@ -322,7 +322,7 @@ def simulate_amplification(molecules,
     return readcounts, dict(mean=mean,median=median,var=var,ff=ff,alpha=empirical_alpha,max=maxx)
 
 
-def scanpy_preproc_baseline(adata,n_hvgs,n_comps):
+def scanpy_preproc_baseline(adata,n_hvgs,n_comps,return_full_hvg_results=False,run_tsne=True):
     
     adata_seurat = adata.copy()
     sc.pp.normalize_total(adata_seurat)
@@ -343,20 +343,27 @@ def scanpy_preproc_baseline(adata,n_hvgs,n_comps):
         ad.obsm['pca'] = rescale_pca(pca.fit_transform(ad.layers['logmedian'].A))
         ad.obsm[f'pca{n_comps}'] = ad.obsm['pca'][:,:n_comps]
 
-    logmedian_PCA(ad_hvg_seurat,n_comps=n_comps)
+    if run_tsne:
+        logmedian_PCA(ad_hvg_seurat,n_comps=n_comps)
 
-    pca_data_after_HVG = ad_hvg_seurat.obsm[f'pca{n_comps}']
-    tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
-    pca_init = ad_hvg_seurat.obsm['pca'][:,:2]
-    ad_hvg_seurat.obsm['tsne'] = np.array(tsne.fit(X=pca_data_after_HVG,initialization=pca_init))
-    
-    return ad_hvg_seurat
+        pca_data_after_HVG = ad_hvg_seurat.obsm[f'pca{n_comps}']
+        tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
+        pca_init = ad_hvg_seurat.obsm['pca'][:,:2]
+        ad_hvg_seurat.obsm['tsne'] = np.array(tsne.fit(X=pca_data_after_HVG,initialization=pca_init))
 
-def compute_residuals(adata,alpha,theta,clipping=True,tag_suffix=''):
+    if return_full_hvg_results:
+        return ad_hvg_seurat,hvg_seurat
+    else:
+        return ad_hvg_seurat
+
+
+
+def compute_residuals(adata,alpha,theta,clipping=True,tag_suffix='',compute_var=True):
     infostr = get_tag(alpha,theta,clipping) + tag_suffix
     print(infostr)
     adata.layers[infostr] = pearson_residuals_compound(counts=adata.X.toarray(),theta=theta,alpha=alpha,clipping=clipping)
-    adata.var[infostr+'_var'] = np.var(adata.layers[infostr],axis=0)
+    if compute_var:
+        adata.var[infostr+'_var'] = np.var(adata.layers[infostr],axis=0)
     
 def select_hvgs(adata,alpha,theta,n_hvgs=3000,clipping=True):    
     resvar = adata.var[get_tag(alpha=alpha,theta=theta,clipping=clipping)+'_var']    
@@ -376,7 +383,18 @@ def compute_pca_on_hvgs(adata, alpha, theta, n_hvgs,n_comps,clipping=True):
     return ad
 
 
-def readcount_pipeline(adata,alpha, theta, n_hvgs,n_comps,clipping=True):
+def umi_pipeline(adata,n_comps,n_hvgs,clipping=None,run_tsne=True):
+        sc.pp.filter_genes(adata,min_cells=5)        
+        sc.experimental.pp.recipe_pearson_residuals(adata,n_comps=n_comps,n_top_genes=n_hvgs,clip=clipping)
+        if run_tsne:
+            tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
+            adata.obsm['tsne'] = np.array(tsne.fit(X=adata.obsm['X_pca']))
+
+def readcount_pipeline(adata,alpha, theta, n_hvgs,n_comps,clipping=True,return_full_hvg_results=False,run_tsne=True):
+    
+    if return_full_hvg_results:
+        adata = adata.copy()
+    
     sc.pp.filter_genes(adata,min_cells=5)
 
     compute_residuals(adata,alpha=alpha,theta=theta,clipping=clipping)
@@ -387,10 +405,14 @@ def readcount_pipeline(adata,alpha, theta, n_hvgs,n_comps,clipping=True):
     adata.var['means'] = np.mean(adata.X.A,axis=0)
     adata_hvg=compute_pca_on_hvgs(adata,alpha=alpha,theta=theta,n_hvgs=n_hvgs,n_comps=n_comps,clipping=clipping)
     
-    tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
-    tsne_output = np.array(tsne.fit(X=adata_hvg.obsm[f'pca{n_comps}']))
-    adata_hvg.obsm['tsne'] = tsne_output
-    adata.obsm[f'tsne_{get_tag(alpha=alpha,theta=theta)}'] = tsne_output
+    if run_tsne:
+        tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
+        tsne_output = np.array(tsne.fit(X=adata_hvg.obsm[f'pca{n_comps}']))
+        adata_hvg.obsm['tsne'] = tsne_output
+        adata.obsm[f'tsne_{get_tag(alpha=alpha,theta=theta)}'] = tsne_output
     
-    return adata_hvg
+    if return_full_hvg_results:
+        return adata_hvg, adata
+    else:
+        return adata_hvg
 

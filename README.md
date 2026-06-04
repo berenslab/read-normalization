@@ -1,24 +1,10 @@
 # Compound models and Pearson residuals for single-cell RNA-seq data without UMIs
 
-This repository holds the code needed to reproduce the analyses and figures presented in [Lause et al. (2024)](https://www.biorxiv.org/content/10.1101/2023.08.02.551637v2). The code for the earlier version of the preprint from August 2023 can be found under the [v1 release](https://github.com/berenslab/read-normalization/releases/tag/v1.0).
+This repository holds the code needed to reproduce the analyses and figures presented in a revised version of our preprint [Lause et al. (2024)](https://www.biorxiv.org/content/10.1101/2023.08.02.551637v2), which we revised for a journal submission. The code for the earlier version of the preprint can be found under earlier releases ([v1](https://github.com/berenslab/read-normalization/releases/tag/v1.0), [v2](https://github.com/berenslab/read-normalization/releases/tag/v2.0)).
 
 # Code
 
-Some of the notebooks depend on each other.
-
-All plots based on the Tasic 2018 dataset require `01_prepare_tasic` to run first. Then,
-
-- to reproduce Figures for the homogeneous within-cluster data (Figure 2, S1, S2, S4), run notebook `02`
-- to reproduce Figures for the full Tasic data (Figure 3, S5, S6, S8), run notebook `03` to compute t-SNEs etc. and notebook `04` to make the figures
-- to reproduce Figure S7 for the Census/qUMI comparison, run Census and qUMI with `05_compute_tasic_qumis_census.R` (using our separate R environment, see below for setup instructions), and then run notebooks `06`-`08` to load the data, process and plot
-- to reproduce Figure S9 for the Tasic-like simulated data, use notebooks `09`-`11` to simulate, process and plot
-- to reproduce Figure 6, run notebook `16` to prepare simulated data and notebook `17` to plot
-
-All plots based on the reads-per-UMI tables from the Ziegenhain/Hagemann-Jensen datasets requires `12_prepare_ziegenhain` to run first. Then,
-
-- to reproduce the main Figures 4 and 5, run notebook `13`
-- to reproduce Figure S3 on Pseudogenes, run notebook `14`
-- to reproduce Figure S10 and S11 on per-cell amplification parameter estimates, run notebook `15`
+Some of the notebooks and R scripts depend on each other and are best run in the order indicated. For the R scripts, use our separate R environment (see below for setup instructions). Notebooks/Scripts 1-17 use the Tasic 2018 dataset. Notebooks 18-23 are based on the reads-per-UMI tables from the Ziegenhain/Hagemann-Jensen datasets.
 
 
 # Datasets
@@ -53,6 +39,3 @@ Then, to install qUMI, activate the environment with `conda activate r41_env_ful
 ```
 remotes::install_github("willtownes/quminorm")
 ```
-
-
-

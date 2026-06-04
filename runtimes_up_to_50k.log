@@ -1,0 +1,237 @@
+reading data from data//tasic//runtime_exp//tpm_transposed_1000.mtx
+[1] "make sce object"
+[1] "compute qUMIs"
+[1] "done. qUMI time:"
+   user  system elapsed 
+ 19.405   9.417   3.755 
+[1] "preparing batches"
+[1] "compute census counts"
+[1] "number of batches:"
+[1] 1
+[1] "working on batch"
+[1] 1
+[1] "done. census time:"
+    user   system  elapsed 
+1081.641    8.063 1089.468 
+reading data from data//tasic//runtime_exp//tpm_transposed_5000.mtx
+[1] "make sce object"
+[1] "compute qUMIs"
+[1] "done. qUMI time:"
+   user  system elapsed 
+109.461  23.640  10.540 
+[1] "preparing batches"
+[1] "compute census counts"
+[1] "number of batches:"
+[1] 5
+[1] "working on batch"
+[1] 1
+[1] "working on batch"
+[1] 2
+[1] "working on batch"
+[1] 3
+[1] "working on batch"
+[1] 4
+[1] "working on batch"
+[1] 5
+[1] "done. census time:"
+    user   system  elapsed 
+4859.475   36.163 4894.571 
+reading data from data//tasic//runtime_exp//tpm_transposed_10000.mtx
+[1] "make sce object"
+[1] "compute qUMIs"
+[1] "done. qUMI time:"
+   user  system elapsed 
+213.608  44.703  20.657 
+[1] "preparing batches"
+[1] "compute census counts"
+[1] "number of batches:"
+[1] 10
+[1] "working on batch"
+[1] 1
+[1] "working on batch"
+[1] 2
+[1] "working on batch"
+[1] 3
+[1] "working on batch"
+[1] 4
+[1] "working on batch"
+[1] 5
+[1] "working on batch"
+[1] 6
+[1] "working on batch"
+[1] 7
+[1] "working on batch"
+[1] 8
+[1] "working on batch"
+[1] 9
+[1] "working on batch"
+[1] 10
+[1] "done. census time:"
+     user    system   elapsed 
+11421.273   202.474 11621.817 
+reading data from data//tasic//runtime_exp//tpm_transposed_20000.mtx
+[1] "make sce object"
+[1] "compute qUMIs"
+[1] "done. qUMI time:"
+   user  system elapsed 
+370.852  77.258  50.312 
+[1] "preparing batches"
+[1] "compute census counts"
+[1] "number of batches:"
+[1] 20
+[1] "working on batch"
+[1] 1
+[1] "working on batch"
+[1] 2
+[1] "working on batch"
+[1] 3
+[1] "working on batch"
+[1] 4
+[1] "working on batch"
+[1] 5
+[1] "working on batch"
+[1] 6
+[1] "working on batch"
+[1] 7
+[1] "working on batch"
+[1] 8
+[1] "working on batch"
+[1] 9
+[1] "working on batch"
+[1] 10
+[1] "working on batch"
+[1] 11
+[1] "working on batch"
+[1] 12
+[1] "working on batch"
+[1] 13
+[1] "working on batch"
+[1] 14
+[1] "working on batch"
+[1] 15
+[1] "working on batch"
+[1] 16
+[1] "working on batch"
+[1] 17
+[1] "working on batch"
+[1] 18
+[1] "working on batch"
+[1] 19
+[1] "working on batch"
+[1] 20
+[1] "done. census time:"
+    user   system  elapsed 
+25651.68  1834.75 27479.68 
+reading data from data//tasic//runtime_exp//tpm_transposed_50000.mtx
+[1] "make sce object"
+[1] "compute qUMIs"
+[1] "done. qUMI time:"
+    user   system  elapsed 
+1036.484  150.208  158.616 
+[1] "preparing batches"
+[1] "compute census counts"
+[1] "number of batches:"
+[1] 50
+[1] "working on batch"
+[1] 1
+[1] "working on batch"
+[1] 2
+[1] "working on batch"
+[1] 3
+[1] "working on batch"
+[1] 4
+[1] "working on batch"
+[1] 5
+[1] "working on batch"
+[1] 6
+[1] "working on batch"
+[1] 7
+[1] "working on batch"
+[1] 8
+[1] "working on batch"
+[1] 9
+[1] "working on batch"
+[1] 10
+[1] "working on batch"
+[1] 11
+[1] "working on batch"
+[1] 12
+[1] "working on batch"
+[1] 13
+[1] "working on batch"
+[1] 14
+[1] "working on batch"
+[1] 15
+[1] "working on batch"
+[1] 16
+[1] "working on batch"
+[1] 17
+[1] "working on batch"
+[1] 18
+[1] "working on batch"
+[1] 19
+[1] "working on batch"
+[1] 20
+[1] "working on batch"
+[1] 21
+[1] "working on batch"
+[1] 22
+[1] "working on batch"
+[1] 23
+[1] "working on batch"
+[1] 24
+[1] "working on batch"
+[1] 25
+[1] "working on batch"
+[1] 26
+[1] "working on batch"
+[1] 27
+[1] "working on batch"
+[1] 28
+[1] "working on batch"
+[1] 29
+[1] "working on batch"
+[1] 30
+[1] "working on batch"
+[1] 31
+[1] "working on batch"
+[1] 32
+[1] "working on batch"
+[1] 33
+[1] "working on batch"
+[1] 34
+[1] "working on batch"
+[1] 35
+[1] "working on batch"
+[1] 36
+[1] "working on batch"
+[1] 37
+[1] "working on batch"
+[1] 38
+[1] "working on batch"
+[1] 39
+[1] "working on batch"
+[1] 40
+[1] "working on batch"
+[1] 41
+[1] "working on batch"
+[1] 42
+[1] "working on batch"
+[1] 43
+[1] "working on batch"
+[1] 44
+[1] "working on batch"
+[1] 45
+[1] "working on batch"
+[1] 46
+[1] "working on batch"
+[1] 47
+[1] "working on batch"
+[1] 48
+[1] "working on batch"
+[1] 49
+[1] "working on batch"
+[1] 50
+[1] "done. census time:"
+     user    system   elapsed 
+49613.971  3468.386 53067.409 
