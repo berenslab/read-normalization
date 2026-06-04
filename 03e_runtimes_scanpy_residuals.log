@@ -1,0 +1,49 @@
+INFO:root:
+
+================ Running for (1000, 25533)================ 
+INFO:root:---Compound Pearson residuals: 0.6354682445526123 seconds ---
+INFO:root:---Scanpy normalize & log transform 0.21466541290283203 seconds ---
+INFO:root:================ ================ ================ ================ 
+
+INFO:root:
+
+================ Running for (1000, 25533)================ 
+INFO:root:---Compound Pearson residuals: 0.7016091346740723 seconds ---
+INFO:root:---Scanpy normalize & log transform 0.21794366836547852 seconds ---
+INFO:root:================ ================ ================ ================ 
+
+INFO:root:
+
+================ Running for (5000, 25533)================ 
+INFO:root:---Compound Pearson residuals: 2.758073091506958 seconds ---
+INFO:root:---Scanpy normalize & log transform 1.4992661476135254 seconds ---
+INFO:root:================ ================ ================ ================ 
+
+INFO:root:
+
+================ Running for (10000, 25533)================ 
+INFO:root:---Compound Pearson residuals: 5.428820371627808 seconds ---
+INFO:root:---Scanpy normalize & log transform 2.3791098594665527 seconds ---
+INFO:root:================ ================ ================ ================ 
+
+INFO:root:
+
+================ Running for (20000, 25533)================ 
+INFO:root:---Compound Pearson residuals: 10.97478985786438 seconds ---
+INFO:root:---Scanpy normalize & log transform 4.225691318511963 seconds ---
+INFO:root:================ ================ ================ ================ 
+
+INFO:root:
+
+================ Running for (50000, 25533)================ 
+INFO:root:---Compound Pearson residuals: 29.215473413467407 seconds ---
+INFO:root:---Scanpy normalize & log transform 11.713490009307861 seconds ---
+INFO:root:================ ================ ================ ================ 
+
+INFO:root:
+
+================ Running for (100000, 25533)================ 
+INFO:root:---Compound Pearson residuals: 61.782684564590454 seconds ---
+INFO:root:---Scanpy normalize & log transform 24.800479650497437 seconds ---
+INFO:root:================ ================ ================ ================ 
+
