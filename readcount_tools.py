@@ -383,11 +383,12 @@ def compute_pca_on_hvgs(adata, alpha, theta, n_hvgs,n_comps,clipping=True):
     return ad
 
 
-def umi_pipeline(adata,n_comps,n_hvgs,clipping=None):
+def umi_pipeline(adata,n_comps,n_hvgs,clipping=None,run_tsne=True):
         sc.pp.filter_genes(adata,min_cells=5)        
         sc.experimental.pp.recipe_pearson_residuals(adata,n_comps=n_comps,n_top_genes=n_hvgs,clip=clipping)
-        tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
-        adata.obsm['tsne'] = np.array(tsne.fit(X=adata.obsm['X_pca']))
+        if run_tsne:
+            tsne = openTSNE.TSNE(random_state=42,verbose=True,n_jobs=38)
+            adata.obsm['tsne'] = np.array(tsne.fit(X=adata.obsm['X_pca']))
 
 def readcount_pipeline(adata,alpha, theta, n_hvgs,n_comps,clipping=True,return_full_hvg_results=False,run_tsne=True):
     
