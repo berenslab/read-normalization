@@ -1,10 +1,10 @@
 # Compound Pearson residuals for single-cell RNA-seq data without UMIs
 
-This repository holds the code needed to reproduce the analyses and figures presented in our preprint [Lause et al. (2023)](https://www.biorxiv.org/content/10.1101/2023.08.02.551637v2), including additional analysis that was requested during peer review for a journal submission. The code for the earlier version of the preprint can be found under earlier releases ([v1](https://github.com/berenslab/read-normalization/releases/tag/v1.0), [v2](https://github.com/berenslab/read-normalization/releases/tag/v2.0)). Code release v1 corresponds to v1 of the preprint, code release v2 to the current version of the preprint. Release v3 contains the most recent revision analyses.
+This repository holds the code needed to reproduce the analyses and figures presented in our preprint [Lause et al. (2023)](https://www.biorxiv.org/content/10.1101/2023.08.02.551637v2), including additional analysis that was requested during peer review for a journal submission. The code for the earlier version of the preprint can be found under earlier releases ([v1](https://github.com/berenslab/read-normalization/releases/tag/v1.0), [v2](https://github.com/berenslab/read-normalization/releases/tag/v2.0)). Code release v1 corresponds to v1 of the preprint, code release v2 to the current version of the preprint. Release v3.1 contains the most recent revision analyses.
 
 # Code
 
-Some of the notebooks and R scripts depend on each other and are best run in the order indicated. For the R scripts, use our separate R environment (see below for setup instructions). Notebooks/Scripts 1-17 use the Tasic 2018 dataset. Notebooks 18-23 are based on the reads-per-UMI tables from the Ziegenhain/Hagemann-Jensen datasets.
+Some of the notebooks and R scripts depend on each other and are best run in the order indicated. For the R scripts, use our separate R environment (see below for setup instructions). Notebooks/Scripts 1-18 use the Tasic 2018 dataset. Notebooks 19-24 are based on the reads-per-UMI tables from the Ziegenhain/Hagemann-Jensen datasets.
 
 
 # Datasets
